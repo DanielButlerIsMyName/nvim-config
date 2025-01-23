@@ -7,3 +7,4 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
+vim.opt.scrolloff = 1

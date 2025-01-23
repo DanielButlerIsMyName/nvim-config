@@ -1,46 +1,82 @@
-vim.cmd [[packadd packer.nvim]]
+-- Ensure Lazy.nvim is installed
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- Latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
+-- Set up plugins with Lazy.nvim
+require("lazy").setup({
+  -- Telescope
+  {
+    'nvim-telescope/telescope.nvim',
+    version = '0.1.8',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
 
-  use {
+  -- Treesitter
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
+    build = ':TSUpdate',
+  },
 
-  use ({
+  -- Oil File Manager
+{
+  'stevearc/oil.nvim',
+  opts = {},
+  dependencies = {
+    { "echasnovski/mini.icons", opts = {} },
+    "nvim-tree/nvim-web-devicons", -- Ensure devicons are properly loaded
+  },
+},
+
+  -- Comments
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end,
+  },
+
+  -- Rose Pine Theme
+  {
     'rose-pine/neovim',
-    as = 'rose-pine',
+    name = 'rose-pine',
     config = function()
       vim.cmd('colorscheme rose-pine')
-    end
-  })
+    end,
+  },
 
-  -- LSP Config and Installer
-  use 'neovim/nvim-lspconfig' -- LSP configuration
-  use 'williamboman/mason.nvim' -- LSP installer
-  use 'williamboman/mason-lspconfig.nvim' -- Bridge between Mason and nvim-lspconfig
+  -- LSP Configuration and Tools
+  'neovim/nvim-lspconfig',
+  {
+    'williamboman/mason.nvim',
+    config = true,
+  },
+  'williamboman/mason-lspconfig.nvim',
 
   -- Autocompletion
-  use 'hrsh7th/nvim-cmp' -- Completion plugin
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-  use 'hrsh7th/cmp-buffer' -- Buffer source for nvim-cmp
-  use 'hrsh7th/cmp-path' -- Path source for nvim-cmp
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
 
-  -- Snippet support
-  use 'L3MON4D3/LuaSnip' -- Snippet engine
-  use 'saadparwaiz1/cmp_luasnip' -- Snippet completions
+  -- Snippets
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
 
-  use {
+  -- GitHub Copilot
+  {
     "github/copilot.vim",
     config = function()
       -- Optional: Configure Copilot settings here
-    end
-  }
-
-end)
+    end,
+  },
+})
