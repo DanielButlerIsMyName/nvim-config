@@ -1,33 +1,51 @@
-# Neovim Configuration
+# Neovim Configuration Repository
 
-This repository contains Neovim configurations that include:
+Welcome to my Neovim configuration repository! This repository contains all the configuration files, plugins, and shortcuts I use to enhance my Neovim experience. Whether you're looking to adopt some best practices or just curious about my setup, feel free to explore and customize it for your own workflow.
 
-- **Treesitter**: Enhanced syntax highlighting and code parsing
-- **Telescope**: Fuzzy finder for files, buffers, etc.
-- **Packer**: Plugin manager for Neovim
+---
+## Overview
 
-## Installation
+This repository includes:
+- **Core Neovim configurations**: Settings for performance, appearance, and behavior.
+- **Plugin management**: Using [Lazy.nvim](https://github.com/folke/lazy.nvim) for effortless plugin handling.
+- **Custom keybindings**: Personalized mappings for efficient navigation and editing.
+- **Language Server Protocol (LSP)**: Configured for enhanced coding assistance and autocompletion.
 
-1. Clone this repository into your Neovim configuration directory:
+---
+## Command-line Shortcut for Faster Access
 
-   ```bash
-   git clone <repository-url> ~/.config/nvim
-   ```
+To quickly open Neovim in the current directory, set up a shortcut in your shell:
 
-2. Open Neovim and install the plugins using Packer:
+### 1. Add an Alias
+Edit your shell configuration file depending on your shell:
 
-   ```
-   :PackerSync
-   ```
+- **For zsh (default on macOS):**
+  ```bash
+  nano ~/.zshrc
+  ```
 
-3. For Treesitter, make sure to update parsers:
+- **For bash:**
+  ```bash
+  nano ~/.bashrc
+  ```
 
-   ```
-   :TSUpdate
-   ```
+### 2. Add the Alias
+Add this line to the configuration file:
+```bash
+alias v='nvim .'
+```
 
-## File Structure
+### 3. Save and Apply Changes
+Save the file and reload the shell:
+```bash
+source ~/.zshrc   # For zsh
+# OR
+source ~/.bashrc  # For bash
+```
 
-- `init.lua`: Main configuration file
-- `lua/settings.lua`: General settings for Neovim
-- `lua/plugins.lua`: Plugin configurations
+### 4. Usage
+Simply type:
+```bash
+v
+```
+to open Neovim in the current directory.
