@@ -1,31 +1,14 @@
--- Ensure Mason is installed and set up
 require("mason").setup()
-
--- Ensure Mason-LSPConfig is installed and integrates with LSPConfig
 require("mason-lspconfig").setup({
     ensure_installed = {
-        "lua_ls",       -- Lua
-        "pyright",      -- Python
-        "ts_ls",        -- TypeScript/JavaScript
-        "bashls",       -- Bash
-        "powershell_es",-- PowerShell
-        "jsonls",       -- JSON
-        "cssls",        -- CSS
-        "tailwindcss",  -- Tailwind CSS
-        "elixirls",     -- Elixir
-        "csharp_ls",    -- C#
-        "marksman",     -- Markdown
-        "yamlls"        -- YAML
+        "lua_ls", "pyright", "ts_ls", "bashls", "powershell_es", "jsonls", "cssls", "tailwindcss", "elixirls", "csharp_ls", "marksman", "yamlls"
     },
     automatic_installation = true,
 })
 
--- LSPConfig Setup
 local lspconfig = require("lspconfig")
--- Common capabilities for autocompletion
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- On-Attach function for keybindings
 local on_attach = function(client, bufnr)
     local opts = { noremap = true, silent = true }
     local buf_set_keymap = function(...)
@@ -37,3 +20,29 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
     buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 end
+
+lspconfig.ts_ls.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.eslint.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.lua_ls.setup({ capabilities = capabilities, on_attach = on_attach })
+
+-- Autocompletion
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    }),
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        { name = 'buffer' },
+        { name = 'path' },
+    })
+})
