@@ -14,13 +14,14 @@ require("lazy").setup({
   end},
 
   -- UI & Theme
-  {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    config = function()
-      vim.cmd('colorscheme rose-pine')
-    end,
-  },
+  -- {
+  --   'rose-pine/neovim',
+  --   name = 'rose-pine',
+  --   config = function()
+  --     vim.cmd('colorscheme rose-pine')
+  --   end,
+  -- },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
   -- File Manager
   {
