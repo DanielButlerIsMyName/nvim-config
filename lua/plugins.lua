@@ -13,14 +13,6 @@ require("lazy").setup({
     require("nvim-web-devicons").setup({ default = true })
   end},
 
-  -- UI & Theme
-  -- {
-  --   'rose-pine/neovim',
-  --   name = 'rose-pine',
-  --   config = function()
-  --     vim.cmd('colorscheme rose-pine')
-  --   end,
-  -- },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
   -- File Manager
@@ -69,8 +61,8 @@ require("lazy").setup({
   {'saadparwaiz1/cmp_luasnip'},
 
   -- GitHub Copilot
-  {
-    "github/copilot.vim",
-  },
+  -- {
+  --   "github/copilot.vim",
+  -- },
 })
 
