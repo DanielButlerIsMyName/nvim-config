@@ -49,6 +49,13 @@ require("lazy").setup({
     end,
   },
 
+  -- Harpoon
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim"  }
+  },
+
   -- LSP & Autocompletion
   {'neovim/nvim-lspconfig'},
   {'williamboman/mason.nvim', config = true},
