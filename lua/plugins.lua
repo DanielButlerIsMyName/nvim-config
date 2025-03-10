@@ -8,10 +8,11 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- Core Plugins
-  {'nvim-lua/plenary.nvim'},
-  {'nvim-tree/nvim-web-devicons', config = function()
-    require("nvim-web-devicons").setup({ default = true })
-  end},
+  { 'nvim-lua/plenary.nvim' },
+  { 'nvim-tree/nvim-web-devicons', config = function()
+      require("nvim-web-devicons").setup({ default = true })
+    end
+  },
 
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
@@ -19,7 +20,7 @@ require("lazy").setup({
   {
     'stevearc/oil.nvim',
     opts = {},
-    dependencies = {"echasnovski/mini.icons", "nvim-tree/nvim-web-devicons"},
+    dependencies = { "echasnovski/mini.icons", "nvim-tree/nvim-web-devicons" },
   },
 
   -- Syntax Highlighting
@@ -46,23 +47,18 @@ require("lazy").setup({
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim"  }
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" }
   },
 
   -- LSP & Autocompletion
-  {'neovim/nvim-lspconfig'},
-  {'williamboman/mason.nvim', config = true},
-  {'williamboman/mason-lspconfig.nvim'},
-  {'hrsh7th/nvim-cmp'},
-  {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/cmp-buffer'},
-  {'hrsh7th/cmp-path'},
-  {'L3MON4D3/LuaSnip'},
-  {'saadparwaiz1/cmp_luasnip'},
+  { "neovim/nvim-lspconfig" },
+  { "williamboman/mason.nvim" },
+  { "williamboman/mason-lspconfig.nvim" },
+  { "hrsh7th/nvim-cmp" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "L3MON4D3/LuaSnip" },
+  { "rafamadriz/friendly-snippets" },
 
   -- GitHub Copilot
-  -- {
-  --   "github/copilot.vim",
-  -- },
+  { "github/copilot.vim" },
 })
-

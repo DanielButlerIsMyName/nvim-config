@@ -24,3 +24,12 @@ vim.opt.clipboard = "unnamedplus"
 -- File Handling
 vim.opt.swapfile = false
 vim.opt.backup = false
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+})
+
