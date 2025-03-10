@@ -1,13 +1,13 @@
 # Neovim Configuration Repository
 
-Welcome to my Neovim configuration repository! This repository contains all the configuration files, plugins, and shortcuts I use to enhance my Neovim experience. Whether you're looking to adopt some best practices or just curious about my setup, feel free to explore and customize it for your own workflow.
+Welcome to my Neovim configuration repository! This repository contains all the configuration files, plugins, and shortcuts I use to for Neovim.
 
 ---
 ## Overview
 
 This repository includes:
 - **Core Neovim configurations**: Settings for performance, appearance, and behavior.
-- **Plugin management**: Using [Lazy.nvim](https://github.com/folke/lazy.nvim) for effortless plugin handling.
+- **Plugin management**: Using [Lazy.nvim](https://github.com/folke/lazy.nvim) for plugin handling.
 - **Custom keybindings**: Personalized mappings for efficient navigation and editing.
 - **Language Server Protocol (LSP)**: Configured for enhanced coding assistance and autocompletion.
 
@@ -108,7 +108,4 @@ For Windows, you can set up an alias in PowerShell or add a batch file:
    ```
 3. Save and restart the command prompt.
 4. Now, typing `nvim` in cmd will open Neovim in the current directory.
-
----
-Now you have quick access to Neovim across all platforms with an easy-to-use alias!
 
