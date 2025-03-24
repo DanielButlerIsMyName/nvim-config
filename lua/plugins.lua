@@ -51,13 +51,21 @@ require("lazy").setup({
   },
 
   -- LSP & Autocompletion
+  { "folke/lazydev.nvim" },
   { "neovim/nvim-lspconfig" },
   { "williamboman/mason.nvim" },
   { "williamboman/mason-lspconfig.nvim" },
+  { "WhoIsSethDaniel/mason-tool-installer.nvim" },
+  { "j-hui/fidget.nvim" },
   { "hrsh7th/nvim-cmp" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "L3MON4D3/LuaSnip" },
   { "rafamadriz/friendly-snippets" },
+  { "stevearc/conform.nvim" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/cmp-nvim-lsp-signature-help" },
+  { "folke/tokyonight.nvim" },
+  { "folke/todo-comments.nvim" },
 
   -- GitHub Copilot
   { "github/copilot.vim" },

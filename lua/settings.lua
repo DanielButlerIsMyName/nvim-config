@@ -24,6 +24,8 @@ vim.opt.clipboard = "unnamedplus"
 -- File Handling
 vim.opt.swapfile = false
 vim.opt.backup = false
+-- Prefers unix but doesn't brake on microsoft line-brakes
+vim.opt.fileformats = { "unix", "dos" }
 
 vim.diagnostic.config({
   virtual_text = true,
