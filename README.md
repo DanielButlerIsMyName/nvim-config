@@ -1,111 +1,144 @@
 # Neovim Configuration Repository
 
-Welcome to my Neovim configuration repository! This repository contains all the configuration files, plugins, and shortcuts I use to for Neovim.
+Welcome to my Neovim configuration repository! This repo contains all the configuration files, plugins, and shortcuts I use with Neovim.
 
 ---
+
 ## Overview
 
 This repository includes:
-- **Core Neovim configurations**: Settings for performance, appearance, and behavior.
-- **Plugin management**: Using [Lazy.nvim](https://github.com/folke/lazy.nvim) for plugin handling.
-- **Custom keybindings**: Personalized mappings for efficient navigation and editing.
-- **Language Server Protocol (LSP)**: Configured for enhanced coding assistance and autocompletion.
+
+* **Core Neovim configurations** – Settings for performance, appearance, and behavior.
+* **Plugin management** – Handled via [Lazy.nvim](https://github.com/folke/lazy.nvim).
+* **Custom keybindings** – Personalized mappings for efficient navigation and editing.
+* **Language Server Protocol (LSP)** – Configured for enhanced coding assistance and autocompletion.
 
 ---
+
 ## Configuration File Paths
 
-Neovim stores its configuration files in different locations depending on the operating system:
-
-- **Linux**:
-  - Config path: `~/.config/nvim/`
-  - Data path: `~/.local/share/nvim/`
-  - Cache path: `~/.cache/nvim/`
-
-- **macOS**:
-  - Config path: `~/.config/nvim/`
-  - Data path: `~/.local/share/nvim/`
-  - Cache path: `~/.cache/nvim/`
-
-- **Windows**:
-  - Config path: `%LOCALAPPDATA%\nvim\` (typically `C:\Users\<your-username>\AppData\Local\nvim\`)
-  - Data path: `%LOCALAPPDATA%\nvim-data\`
-  - Cache path: `%LOCALAPPDATA%\nvim\cache\`
-
-Ensure that your configuration files are placed inside the appropriate directory for Neovim to recognize them.
-
----
-## Command-line Shortcut for Faster Access
-
-To quickly open Neovim in the current directory, set up a shortcut in your shell:
+Neovim stores its configuration files in OS-specific locations:
 
 ### Linux & macOS
 
-1. Edit your shell configuration file depending on your shell:
-   - **For zsh (default on macOS):**
-     ```bash
-     nano ~/.zshrc
-     ```
-   - **For bash:**
-     ```bash
-     nano ~/.bashrc
-     ```
-   - **For fish:**
-     ```bash
-     nano ~/.config/fish/config.fish
-     ```
+* Config: `~/.config/nvim/`
+* Data: `~/.local/share/nvim/`
+* Cache: `~/.cache/nvim/`
 
-2. Add the following alias:
+### Windows
+
+* Config: `%LOCALAPPDATA%\nvim\` (typically `C:\Users\<your-username>\AppData\Local\nvim\`)
+* Data: `%LOCALAPPDATA%\nvim-data\`
+* Cache: `%LOCALAPPDATA%\nvim\cache\`
+
+Ensure your configuration files are placed in the appropriate directory for Neovim to recognize them.
+
+---
+
+## Command-line Shortcut for Faster Access
+
+Set up a shell alias to open Neovim in the current directory:
+
+### Linux & macOS
+
+1. Edit your shell config:
+
+   * zsh: `nano ~/.zshrc`
+   * bash: `nano ~/.bashrc`
+   * fish: `nano ~/.config/fish/config.fish`
+
+2. Add the alias:
+
    ```bash
    alias nvim='nvim .'
    ```
 
-3. Save the file and reload the shell:
+3. Reload your shell:
+
    ```bash
-   source ~/.zshrc   # For zsh
-   source ~/.bashrc   # For bash
+   source ~/.zshrc        # For zsh
+   source ~/.bashrc       # For bash
    source ~/.config/fish/config.fish  # For fish
    ```
 
-4. Usage:
+4. Use it:
+
    ```bash
    nvim
    ```
-   This will open Neovim in the current directory.
 
-### Windows (PowerShell & Command Prompt)
+### Windows
 
-For Windows, you can set up an alias in PowerShell or add a batch file:
+#### PowerShell
 
-#### PowerShell:
+1. Open and edit profile:
 
-1. Open PowerShell and edit your profile:
    ```powershell
    notepad $PROFILE
    ```
 
-2. Add this line:
+2. Add:
+
    ```powershell
    function nvim { nvim.exe . }
    ```
 
-3. Save and reload the profile:
+3. Reload:
+
    ```powershell
    . $PROFILE
    ```
 
-4. Usage:
+4. Use it:
+
    ```powershell
    nvim
    ```
 
-#### Command Prompt (cmd.exe):
+#### Command Prompt (cmd.exe)
 
-1. Create a batch file named `nvim.bat` in a directory that is in your system's `PATH` (e.g., `C:\Windows` or a custom scripts folder).
-2. Add the following content to the file:
+1. Create `nvim.bat` in a directory in your `PATH`.
+2. Add:
+
    ```bat
    @echo off
    nvim .
    ```
-3. Save and restart the command prompt.
-4. Now, typing `nvim` in cmd will open Neovim in the current directory.
+3. Save and restart `cmd.exe`.
+4. Usage:
 
+   ```cmd
+   nvim
+   ```
+
+---
+
+## Supermaven Commands
+
+```text
+:SupermavenStart      Start Supermaven
+:SupermavenStop       Stop Supermaven
+:SupermavenRestart    Restart Supermaven
+:SupermavenToggle     Toggle Supermaven
+:SupermavenStatus     Show current status
+:SupermavenUseFree    Switch to free version
+:SupermavenUsePro     Switch to pro version
+:SupermavenLogout     Log out
+:SupermavenShowLog    Show logs
+:SupermavenClearLog   Clear logs
+```
+
+---
+
+## LSP Completion Mapping
+
+Example insert-mode mappings for `nvim-cmp`:
+
+```lua
+mapping = cmp.mapping.preset.insert({
+  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  ['<C-Space>'] = cmp.mapping.complete(),
+})
+```
