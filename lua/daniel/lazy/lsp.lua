@@ -1,57 +1,5 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup({
-  -- Core Plugins
-  { 'nvim-lua/plenary.nvim' },
-  { 'nvim-tree/nvim-web-devicons', config = function()
-      require("nvim-web-devicons").setup({ default = true })
-    end
-  },
-
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-
-  -- File Manager
-  {
-    'stevearc/oil.nvim',
-    opts = {},
-    dependencies = { "echasnovski/mini.icons", "nvim-tree/nvim-web-devicons" },
-  },
-
-  -- Syntax Highlighting
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-  },
-
-  -- Telescope
-  {
-    'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-  },
-
-  -- Commenting
-  {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end,
-  },
-
-  -- Harpoon
-  {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" }
-  },
-
-  -- LSP & Autocompletion
-  {"neovim/nvim-lspconfig",
+return {
+    "neovim/nvim-lspconfig",
     dependencies = {
         "stevearc/conform.nvim",
         "williamboman/mason.nvim",
@@ -85,8 +33,9 @@ require("lazy").setup({
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
-"ts_ls", "omnisharp",
                 "gopls",
+                "ts_ls",
+                "omnisharp",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -148,9 +97,8 @@ require("lazy").setup({
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
-                { name = "copilot", group_index = 2 },
+                { name = "supermaven", group_index = 2 },
                 { name = 'nvim_lsp' },
-                { name = 'luasnip' }, -- For luasnip users.
             }, {
                 { name = 'buffer' },
             })
@@ -168,7 +116,4 @@ require("lazy").setup({
             },
         })
     end
-  },
-  -- GitHub Copilot
-  { "github/copilot.vim" },
-})
+}
